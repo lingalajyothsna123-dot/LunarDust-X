@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>LunarDust-X | 3D Moon Rover Mission Control</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="moon.css"></head><body>
+<canvas id="gl"></canvas>
+<div id="load"><div class="orb"></div><h1>Lunar<span>Dust</span>-X</h1><p id="lt">Booting mission systems...</p><div class="bar"><i id="lb"></i></div><small>3D Moon Rover Simulation &middot; AI Dust Prediction</small></div>
+<div id="hud">
+<header id="top" class="g"><b class="brand">&#127765; Lunar<span>Dust</span>-X</b><span id="stc" class="chip">STANDBY</span><span id="cn" class="chip bad">&#9679; CONNECTING</span><span class="sp"></span>
+<button id="bStart" class="pr">&#9654; Start Mission</button><button id="bExplore">&#129517; Explore Moon</button><button id="bPause">&#9208; Pause</button><button id="bReset">&#8634; Reset Rover</button><button id="bFull" class="dm">&#9974;</button><a class="dm" href="classic.html">&#128202; Analytics</a></header>
+<section id="tel" class="g"><h3>Rover Telemetry</h3>
+<div class="row"><span>Speed</span><b><i id="v">0.0</i> km/h</b></div><div class="bar"><i id="vb"></i></div>
+<div class="row"><span>Surface slope</span><b><i id="sl">0.0</i>&deg;</b></div><div class="bar"><i id="slb"></i></div>
+<div class="row dm"><span>Position X / Z</span><b id="xy">0 / 0</b></div>
+<div class="row dm"><span>Heading</span><b id="hd">0&deg;</b></div>
+<div class="row dm"><span>Distance</span><b id="ds">0 m</b></div>
+<div class="row dm"><span>Mission time</span><b id="met">00:00</b></div></section>
+<section id="ai" class="g"><h3>AI Dust Prediction <em>LIVE</em></h3>
+<div id="lvl">NO DATA</div><div id="risk">&mdash;</div>
+<div class="pb"><span>Low</span><div class="bar"><i id="p0"></i></div><u id="q0">0%</u></div>
+<div class="pb"><span>Medium</span><div class="bar"><i id="p1"></i></div><u id="q1">0%</u></div>
+<div class="pb"><span>High</span><div class="bar"><i id="p2"></i></div><u id="q2">0%</u></div>
+<p id="exp" class="dm"></p>
+<div class="row"><span>Solar panel dust</span><b id="pdv">0%</b></div><div class="bar"><i id="pdb"></i></div>
+<small id="io" class="dm">&nbsp;</small><small id="mi" class="dm">&nbsp;</small></section>
+<section id="mis" class="g"><div class="row"><span id="mt">Awaiting launch</span><b id="mpv">0%</b></div><div class="bar"><i id="mp"></i></div></section>
+<aside id="help" class="g dm"><b>CONTROLS</b><br>W / &uarr; forward &middot; S / &darr; reverse<br>A / &larr; D / &rarr; steer &middot; Shift boost<br>Space brake &middot; X dust shield<br>P pause &middot; R reset &middot; drag = orbit camera</aside>
+<div id="warn" class="g">&#9888; AI backend offline. In PowerShell run: <code>uvicorn backend.main:app --reload</code></div>
+<div id="toast"></div>
+<div id="touch"><div class="pad l"><button data-k="l">&#9664;</button><button data-k="r">&#9654;</button></div><div class="pad r"><button data-k="boost">&#9889;</button><button data-k="f">&#9650;</button><button data-k="b">&#9660;</button></div></div>
+</div>
+<div id="menu" class="off"><div class="g card"><h2 id="mtitle">Mission Briefing</h2><p id="msub">Drive the rover across the Moon. Every second, your real speed and the real terrain slope are sent to the trained ML model, which predicts the Low / Medium / High dust level.</p><div class="btns"><button id="mStart" class="pr">&#9654; Start Mission</button><button id="mExplore">&#129517; Explore Moon</button></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+<script>window.THREE||document.write('<script src="vendor/three.min.js"><\/script>')</script>
+<script src="moon.js"></script>
+</body></html>

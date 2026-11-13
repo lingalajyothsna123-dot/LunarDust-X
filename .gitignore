@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+*.pyc
+.vscode/
+.env
+
+backup_before_3d_upgrade/

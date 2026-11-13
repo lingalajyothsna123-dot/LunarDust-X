@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LunarDust-X | Lunar Dust Prediction and Monitoring</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="classic.css">
+</head>
+<body>
+<header class="nav">
+  <div class="brand"><span class="logo">&#127765;</span><span>LunarDust-X</span></div>
+  <nav>
+    <a href="index.html">3D Simulator</a><a href="#predict">Predict</a><a href="#model">Model</a><a href="#how">How it works</a><a href="#about">About</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <p class="tag">Intelligent Lunar Dust Prediction and Monitoring System</p>
+  <h1>Lunar<span>Dust</span>-X</h1>
+  <p class="lead">When a rover drives across the Moon, it kicks up dust that can coat solar panels and sensors.
+    LunarDust-X predicts the likely dust level from rover speed and surface slope using a Decision Tree.</p>
+  <p class="notice">Educational prototype &mdash; trained on a simulated dataset, not real NASA measurements.</p>
+</section>
+
+<main>
+  <section id="predict" class="grid two">
+    <div class="card">
+      <h2>Rover Conditions</h2>
+      <label for="speed">Rover speed (km/h) <small>0 &ndash; 15</small></label>
+      <input id="speed" type="number" step="0.1" min="0" max="15" placeholder="e.g. 8">
+      <label for="slope">Surface slope (degrees) <small>0 &ndash; 30</small></label>
+      <input id="slope" type="number" step="0.1" min="0" max="30" placeholder="e.g. 15">
+      <p id="error" class="error" role="alert"></p>
+      <div class="btns">
+        <button id="predictBtn" class="primary">Predict Dust Level</button>
+        <button id="sampleBtn" class="ghost">Sample Input</button>
+        <button id="resetBtn" class="ghost">Clear</button>
+      </div>
+      <div id="status" class="status"><span class="dot"></span><span id="statusText">Checking server...</span></div>
+    </div>
+
+    <div class="card result">
+      <h2>Prediction Result</h2>
+      <div id="loader" class="loader hidden"></div>
+      <div id="resultBox" class="placeholder">Enter values and press <b>Predict Dust Level</b>.</div>
+      <div class="risk-row">
+        <div class="risk" data-level="Low Dust">Low</div>
+        <div class="risk" data-level="Medium Dust">Medium</div>
+        <div class="risk" data-level="High Dust">High</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid two">
+    <div class="card">
+      <h2>Dust Monitoring Visualization</h2>
+      <canvas id="dustCanvas" height="220"></canvas>
+      <p class="hint">Particle density reflects the predicted dust level.</p>
+    </div>
+    <div class="card">
+      <h2>Class Probabilities</h2>
+      <div class="chartbox"><canvas id="probChart"></canvas></div>
+    </div>
+  </section>
+
+  <section class="grid two">
+    <div class="card">
+      <h2>Session Prediction History</h2>
+      <div class="chartbox"><canvas id="histChart"></canvas></div>
+      <div class="tablewrap">
+        <table id="histTable"><thead><tr><th>#</th><th>Speed</th><th>Slope</th><th>Result</th></tr></thead><tbody></tbody></table>
+      </div>
+    </div>
+    <div class="card" id="model">
+      <h2>Model Performance</h2>
+      <div class="stats" id="stats"></div>
+      <h3>Confusion Matrix <small>(rows = actual, columns = predicted)</small></h3>
+      <div class="tablewrap"><table id="cmTable"></table></div>
+      <h3>Feature Importance</h3>
+      <div class="chartbox short"><canvas id="impChart"></canvas></div>
+    </div>
+  </section>
+
+  <section id="how" class="card">
+    <h2>How It Works</h2>
+    <ol class="steps">
+      <li><b>Input</b><span>You enter rover speed and surface slope.</span></li>
+      <li><b>Validate</b><span>The page and the API check the allowed ranges.</span></li>
+      <li><b>Request</b><span>JavaScript calls the FastAPI <code>/predict</code> endpoint.</span></li>
+      <li><b>Predict</b><span>The saved Decision Tree model classifies the input.</span></li>
+      <li><b>Display</b><span>Result, risk level and charts update on screen.</span></li>
+    </ol>
+  </section>
+
+  <section id="about" class="grid two">
+    <div class="card">
+      <h2>Project Information</h2>
+      <ul>
+        <li><b>Title:</b> Intelligent Lunar Dust Prediction and Monitoring System</li>
+        <li><b>ML:</b> Decision Tree Classifier (scikit-learn)</li>
+        <li><b>Backend:</b> FastAPI + Uvicorn</li>
+        <li><b>Frontend:</b> HTML, CSS, JavaScript, Chart.js</li>
+        <li><b>Data:</b> simulated records (1000 rows)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>About the Project</h2>
+      <p>LunarDust-X is a college-level machine learning prototype that shows how rover movement
+        could influence dust on the lunar surface. Because the dataset is simulated, results are for
+        learning and demonstration only and must not be used for real mission decisions.</p>
+    </div>
+  </section>
+</main>
+
+<footer>LunarDust-X &copy; 2026 &mdash; Educational prototype with simulated data</footer>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="classic.js"></script>
+</body>
+</html>
