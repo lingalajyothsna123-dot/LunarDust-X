@@ -2,7 +2,7 @@
 if (typeof THREE === 'undefined') { document.getElementById('lt').textContent = 'Error: Three.js could not be loaded. Check your internet connection (CDN) or put three.min.js in frontend/vendor/.'; document.getElementById('load').classList.add('err'); throw new Error('THREE missing'); }
 // LunarDust-X 3D: Three.js world + rover + mission logic. Dust level comes ONLY from the FastAPI /predict endpoint.
 const $ = id => document.getElementById(id), clamp = (x, a, b) => Math.max(a, Math.min(b, x));
-const API = location.port === '8000' ? location.origin : 'http://127.0.0.1:8000';
+const API = 'https://lunardust-x.onrender.com';
 const LV = ['Low', 'Medium', 'High'], LK = ['Low Dust', 'Medium Dust', 'High Dust'], MUL = [.35, 1, 2.2];
 const TINT = [0xaab8d8, 0xd6c7a1, 0xf0a08f], SC = .75, PLAY = 175;   // SC = world units/s per km/h
 const nf = () => new Promise(r => requestAnimationFrame(r));
